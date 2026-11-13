@@ -1,0 +1,29 @@
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Witze</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div>
+        <button id="btn">Zufallswitz holen</button>
+        <p id="witz"></p>
+    </div>
+
+    <div class="joke">
+        <script>
+            window.onload = function () {
+                document.getElementById("btn").addEventListener("click", holeWitz);
+            }
+            async function holeWitz() {
+                let response = await fetch("https://witzapi.de/api/joke/", { "method": "GET" });
+                let jsonData = await response.json();
+                document.getElementById("witz").innerText = jsonData[0].text;
+            }
+        </script>
+    </div>
+</body>
+
+</html>
